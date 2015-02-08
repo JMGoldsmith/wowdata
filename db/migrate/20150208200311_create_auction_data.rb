@@ -1,6 +1,6 @@
-class AuctionData < ActiveRecord::Migration
+class CreateAuctionData < ActiveRecord::Migration
   def change
-    create_table :auction do |t|
+    create_table :auction_data do |t|
         t.integer :auc
         t.integer :item_id
         t.string :owner
@@ -13,7 +13,8 @@ class AuctionData < ActiveRecord::Migration
         t.integer :seed
         t.integer :context
         
-        t.timestamps null:false
+        
+      t.timestamps null: false
     end
   end
 end

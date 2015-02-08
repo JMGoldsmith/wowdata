@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208193649) do
+ActiveRecord::Schema.define(version: 20150208200430) do
 
-  create_table "auction", force: :cascade do |t|
+  create_table "auction_and_items", force: :cascade do |t|
+    t.integer  "auc_item_id"
+    t.integer  "item_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "auction_data", force: :cascade do |t|
     t.integer  "auc"
     t.integer  "item_id"
     t.string   "owner"
@@ -29,25 +36,24 @@ ActiveRecord::Schema.define(version: 20150208193649) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "auction_and_item", force: :cascade do |t|
-    t.integer "auc_item_id"
-    t.integer "item_id"
-  end
-
-  create_table "item", force: :cascade do |t|
-    t.integer "buyPrice"
-    t.boolean "equippable"
-    t.integer "item_id"
-    t.string  "name"
-    t.integer "stackable"
-    t.integer "sellPrice"
+  create_table "item_data", force: :cascade do |t|
+    t.integer  "buyPrice"
+    t.boolean  "equippable"
+    t.integer  "item_id"
+    t.string   "name"
+    t.integer  "stackable"
+    t.integer  "sellPrice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_auctions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "auction"
-    t.string  "owner"
-    t.integer "item_id"
+    t.integer  "user_id"
+    t.integer  "auction"
+    t.string   "owner"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +62,8 @@ ActiveRecord::Schema.define(version: 20150208193649) do
     t.string   "password"
     t.datetime "createdDate"
     t.datetime "lastLogin"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
