@@ -1,0 +1,2 @@
+module AuctionItemHelper
+end
