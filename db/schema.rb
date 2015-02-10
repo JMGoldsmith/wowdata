@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208200430) do
+ActiveRecord::Schema.define(version: 20150210002410) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "auction_and_items", force: :cascade do |t|
     t.integer  "auc_item_id"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150208200430) do
     t.string   "timeLeft"
     t.integer  "rand"
     t.integer  "seed"
-    t.integer  "context"
+    t.integer  "situation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
