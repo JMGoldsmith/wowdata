@@ -1,6 +1,6 @@
 class AuctionData < ActiveRecord::Base
   require 'json'
-  # has_many :items
+  has_many :items
 
   def self.get_file_from_blizzard
     key = '97e4ukrcwjwzfseyb2u2tc5thz4kwxrz'
@@ -27,7 +27,7 @@ class AuctionData < ActiveRecord::Base
         seed = auction["seed"]
         situation = auction["context"]
       #COpy from events.rb style, then do if statement and AuctionData.create(hash)
-      if auction["item"] = 109118 
+      if auction["item"] == 109118 || auction["item"] == 72092 || auction["item"] == 109119
         auction = AuctionData.create(
           {
            auc: auc,
@@ -39,11 +39,10 @@ class AuctionData < ActiveRecord::Base
            quantity: quantity,
            timeLeft: timeLeft,
            rand: rand,
-           # seed: seed,
+           seed: seed,
            situation: situation
              })
       end
-      auction
     end
   end
 end
