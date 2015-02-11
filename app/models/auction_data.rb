@@ -1,5 +1,4 @@
 class AuctionData < ActiveRecord::Base
-  require 'json'
   has_many :items
 
   def self.get_file_from_blizzard
@@ -44,5 +43,9 @@ class AuctionData < ActiveRecord::Base
              })
       end
     end
+  end
+  def self.data_dump
+      AuctionData.get_file_from_blizzard
+      AuctionData.data_pull_from_file
   end
 end
