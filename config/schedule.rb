@@ -19,9 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 10.minutes do 
-  runner "AuctionData.data_dump"
-end
+# every 10.minutes do 
+#   runner "AuctionData.data_dump"
+# end
 
 # every 10.minutes do
 #   runner "AuctionData.data_pull_from_file"
