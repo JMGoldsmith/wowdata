@@ -26,7 +26,7 @@ class AuctionData < ActiveRecord::Base
         seed = auction["seed"]
         situation = auction["context"]
       #COpy from events.rb style, then do if statement and AuctionData.create(hash)
-      if auction["item"] == 109118 || auction["item"] == 72092 || auction["item"] == 109119
+      if auction["item"] == 109118 || auction["item"] == 72092 || auction["item"] == 109119 || auction["item"] == 2772 || auction["item"] == 23424 || auction["item"] == 109693 || auction["item"] == 113588
         auction = AuctionData.create(
           {
            auc: auc,
