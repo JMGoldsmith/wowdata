@@ -25,5 +25,4 @@
 //= require handlebars.runtime
 //= require bootstrap-sprockets
 //= require turbolinks
-//= require_tree ./templates
-
+//= require_tree .
