@@ -1,6 +1,10 @@
 class AuctionData < ActiveRecord::Base
   has_many :items
 
+  def self.cost_over_time(date)
+    where("date(created_at) = ?",date).average('buyout')
+  end
+
   def self.get_file_from_blizzard
     key = '97e4ukrcwjwzfseyb2u2tc5thz4kwxrz'
     HTTParty.get('http://us.battle.net/api/wow/auction/data/medivh')

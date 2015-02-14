@@ -3,6 +3,5 @@ class ItemsController < ApplicationController
   def index
     @item_data = ItemData.all
     @auction_data = AuctionData.all
-    
   end
 end
