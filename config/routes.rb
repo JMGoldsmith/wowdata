@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :trades
+
   root 'items#index'
   devise_for :users
   resources :auction_and_items, except: :destroy 
-  
-  resources :auctions, only: [:index,:show,:create,:new]
-  resources :items, only: [:index,:show,:create,:new]
+  resources :items, only: [:index,:show,:create,:new] do 
+    resources :auctions, only: [:index,:show,:create,:new]
+  end
   resources :user_auction
 
 

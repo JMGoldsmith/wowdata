@@ -1,0 +1,20 @@
+<h1>New Trade</h1>
+
+<div class='col-lg-2 well col-lg-offset-4'>
+	<%= form_for @trade do |f| %>
+      <%= f.text_field :realm %>
+      <%= f.text_field :bnet_id %>
+      <%= f.text_field :item %>
+      <%= f.number_field :number_of_items %>
+      <%= f.number_field :number_of_stacks %>
+      <%= f.number_field :price_per_item %>
+      <%= f.number_field :price_per_stack %>
+      <%= f.check_box :cod %>
+      <%= f.check_box :order_filled %>
+      <%= f.submit "Create" %>
+    <% end %>
+	
+</div>
+
+
+<%= link_to 'Back', trades_path %>
