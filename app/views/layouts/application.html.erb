@@ -29,15 +29,16 @@
                         <a href="#page-top"></a>
                     </div>
                     <div class="navbar-brand">
-                      
+                            <div class='btn'>
                             <% if user_signed_in? %>
                                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
                                     <% else %>
                             <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
                             <% end %>
-                            
-                            <a href="#about">Items</a>
-                            <a href="#contact">Auction History</a>
+                            </div>
+                            <a href="/items" class='btn'>Items</a>
+                            <a href="/auctions" class='btn'>Auction History</a>
+                            <a href="/trades" class='btn'>Trades</a>
                     </div>
                 </div>
             </div>

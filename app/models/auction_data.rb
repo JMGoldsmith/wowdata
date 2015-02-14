@@ -5,6 +5,13 @@ class AuctionData < ActiveRecord::Base
     where("date(created_at) = ?",date).average('buyout')
   end
 
+  def self.money_convert
+    gold = (buyout/10000).floor.abs 
+    silver = ((buyout/100) % 100).floor.abs
+    copper = (buyout % 100).floor.abs
+    puts "#{gold}g#{silver}s#{copper}c"
+  end
+
   def self.get_file_from_blizzard
     key = '97e4ukrcwjwzfseyb2u2tc5thz4kwxrz'
     HTTParty.get('http://us.battle.net/api/wow/auction/data/medivh')
