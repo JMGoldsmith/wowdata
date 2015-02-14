@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Trades</h1>
+<h2>Trade requests</h2>
 
 <table>
   <thead>
@@ -13,14 +13,14 @@
     
     <% @trades.each do |trade| %>
     <div class='col-sm-12 well list-unstyled wowhead'>
-        <p><%= trade.realm %>
-        <%= trade.bnet_id %>
-        <%= trade.item %>
-        <%= trade.number_of_items %>
-        <%= trade.price_per_item %>
-        <%= trade.number_of_stacks %>
-        <%= trade.price_per_stack %>
-        <%= trade.cod %></p>
+        Realm:<%= trade.realm %>
+        BattleNet ID:<%= trade.bnet_id %>
+        Item:<%= trade.item %>
+        Number of Items:<%= trade.number_of_items %>
+        Price Per Item:<%= trade.price_per_item %>
+        Number of stacks:<%= trade.number_of_stacks %>
+        Price per stack:<%= trade.price_per_stack %>
+        Willing to accept COD: <%= trade.cod %>
         <%= link_to 'Show', trade %>
         <%= link_to 'Edit', edit_trade_path(trade) %>
         <%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %>
