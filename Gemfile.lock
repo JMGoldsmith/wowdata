@@ -81,6 +81,8 @@ GEM
       multi_json
       sprockets (>= 2.0.3)
       tilt
+    highcharts-rails (3.0.10)
+      railties (>= 3.1)
     hike (1.2.3)
     httparty (0.13.3)
       json (~> 1.8)
@@ -206,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   handlebars_assets
+  highcharts-rails (~> 3.0.0)
   httparty
   jbuilder (~> 2.0)
   jquery-rails

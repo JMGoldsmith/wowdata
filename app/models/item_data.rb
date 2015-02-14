@@ -1,4 +1,5 @@
 class ItemData < ActiveRecord::Base
+  # before_action :authenticate_user!
   belongs_to :auctions
   has_many :auction_and_items
 

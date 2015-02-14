@@ -1,0 +1,11 @@
+<div>
+	<ul class='col-sm-6'>
+	<% @auction_data.each do |x|%>
+	<div class='col-sm-12 well list-unstyled wowhead'>
+	<li><a href="http://www.wowhead.com/?item=<%= x.item_id %>"></a>  <%=x.owner%> || Sell Price to vendor:<%=x.buyout%></li>	
+	</div>
+	<%end%>
+	</ul>
+	<div class='col-sm-6'>
+	</div>
+</div>

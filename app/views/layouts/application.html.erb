@@ -19,25 +19,27 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">WoW Auction Data</a>
+                <div class="navbar-brand">WoW Auction Data</div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
+                <div class="nav navbar-nav navbar-right">
+                    <div class="hidden">
                         <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#portfolio">Sign In/Sign Up</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">Items</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact">Auction History</a>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="navbar-brand">
+                      
+                            <% if user_signed_in? %>
+                               <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                                    <% else %>
+                            <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
+                            <% end %>
+                            
+                            <a href="#about">Items</a>
+                            <a href="#contact">Auction History</a>
+                    </div>
+                </div>
             </div>
             <!-- /.navbar-collapse -->
         </div>

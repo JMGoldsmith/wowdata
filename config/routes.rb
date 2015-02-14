@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   root 'items#index'
   devise_for :users
-  resources :auction_and_items
-  resources :auction_data
-  resources :items
+  resources :auction_and_items, except: :destroy 
+  
+  resources :auctions, only: [:index,:show,:create,:new]
+  resources :items, only: [:index,:show,:create,:new]
   resources :user_auction
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
