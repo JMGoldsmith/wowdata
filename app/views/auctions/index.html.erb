@@ -1,26 +1,19 @@
 
 <div class='row'>
-	<div id="auction_chart" style="width: 760px; height: 300px;" class='col-lg-8 col-lg-offset-2'>
+	<div id="auction_chart" class='col-lg-8 col-lg-offset-2'>
 
-		<script type="text/javascript" charset="utf-8">
-		  $(function () {
-		    new Highcharts.Chart({
-		      chart: { renderTo: 'auction_chart' },
-    		  title: { text: 'Auction by item' },
-    		  xAxis: { 
-    		  	title: {text: 'daily'} 
-    		  },
-    		  yAxis: {
-      			title: { text: 'Cost'}
-    			},
-    		  series: [{
-      			pointInterval: <%= 24.hours * 1000 %>,
-      			pointStart: <%= 9.days.ago.to_i  %>,
-      			data: <%= (9.days.ago.to_date..Date.today).map { |date| AuctionData.cost_over_time(date).to_f}.inspect %>
-    			}]
-  				});
-		    });
-	</script>
+	<%= high_chart("auction_chart", @chart) %>
 
 	</div>
+</div>
+<div class='row'>
+  <div id="auction_users" class='col-sm-4'>
+  	<%= high_chart("auction_users", @chart) %>
+  </div>
+  <div id="auction_profit" class='col-sm-4'>
+  	<%= high_chart("auction_profit", @chart) %>
+  </div>
+  <div id="total_sales_by_server" class='col-sm-4'>
+  	<%= high_chart("total_sales_by_server", @chart) %>
+  </div>
 </div>

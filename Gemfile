@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'handlebars_assets'
-gem "highcharts-rails", "~> 3.0.0"
+gem 'lazy_high_charts'
 gem 'pg'
 gem 'httparty'
 gem 'devise'

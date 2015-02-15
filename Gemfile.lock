@@ -81,8 +81,7 @@ GEM
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    highcharts-rails (3.0.10)
-      railties (>= 3.1)
+    hash-deep-merge (0.1.1)
     hike (1.2.3)
     httparty (0.13.3)
       json (~> 1.8)
@@ -96,6 +95,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+    lazy_high_charts (1.5.4)
+      bundler (>= 1.0)
+      hash-deep-merge
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -208,10 +210,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   handlebars_assets
-  highcharts-rails (~> 3.0.0)
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  lazy_high_charts
   pg
   rails (= 4.2.0)
   rest-client

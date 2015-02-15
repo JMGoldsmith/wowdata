@@ -1,7 +1,7 @@
 class AuctionData < ActiveRecord::Base
   has_many :items
 
-  def self.cost_over_time(date)
+  def self.cost_over_time(date) # this needs to change
     where("date(created_at) = ?",date).average('buyout')
   end
 

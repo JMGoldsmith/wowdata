@@ -12,16 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-
-//= require highcharts
-//= require highcharts/highcharts-more 
-//= require highcharts/modules/annotations
-//= require highcharts/modules/canvas-tools
-//= require highcharts/modules/data
-//= require highcharts/modules/drilldown
-//= require highcharts/modules/exporting
-//= require highcharts/modules/funnel
-//= require highcharts/themes/gray
+//= require highcharts/highcharts                                                           
+//= require highcharts/highcharts-more                                                         
 //= require handlebars.runtime
 //= require bootstrap-sprockets
 //= require turbolinks
