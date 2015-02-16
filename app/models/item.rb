@@ -11,6 +11,6 @@ class Item < ActiveRecord::Base
     sell_price = response['sellPrice']
     stacks = response['stackable']
     buy_price = response['buyPrice']
-    ItemData.create({item_id: id, name: name, sellPrice: sell_price, stackable: stacks, buyPrice: buy_price })
+    Item.create({item_id: id, name: name, sellPrice: sell_price, stackable: stacks, buyPrice: buy_price })
   end
 end
