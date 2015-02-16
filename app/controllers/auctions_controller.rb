@@ -9,8 +9,8 @@ class AuctionsController < ApplicationController
     # need to include params ID in to queries
     params_array = [] 
     params_array.push(params[:item_id])
-    @buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
-    @bid_data = connection.exec(%q[select date_trunc('hour', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
+    @buyout_data = connection.exec(%q[select date_trunc('day', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
+    @bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     buyout_array = []
     bid_array = []
     @buyout_data.entries.each do |x|
