@@ -5,34 +5,24 @@ class AuctionsController < ApplicationController
   
   
   def index
-
-    @auction_data = Auction.where("item_id = ?", params[:item_id]).where("quantity = 20").order(:created_at).group(:created_at, :id)
+    connection = ActiveRecord::Base.connection.raw_connection
+    @buyout_data = connection.exec %q[select date_trunc('hour', created_at), avg(buyout) from auctions group by 1 order by 1;]
+    @bid_data = connection.exec %q[select date_trunc('hour', created_at), avg(buyout) from auctions group by 1 order by 1;]
     buyout_array = []
     bid_array = []
-    average_array = []
-    @bid = @auction_data.map(&:bid)
-    @bid_average = @bid.sum / @bid.size
-    @buyout = @auction_data.map(&:buyout)
-    @buyout_average = @buyout.sum/@buyout.size
-    @average_of_both = (@buyout_average+@bid_average)/2
-    # @auction_data.map do |x|
-    #   new_buyout_array = []
-    #   new_array = []
-    #   x.created_at
-    #   average_bid = x.bid.sum/x.bid.size
-    #   average_buyout = x.buyout.sum/x.buyout.size
-    #   new_array.push(x.created_at)
-    #   new_array.push(average)
-    #   bid_array << new_array
-    # end
-    # @category = @auction_data.map { |x| x.created_at}
-    # @buyout = @auction_data.map do |x|
-    #   x.buyout 
-    #   gold = (x.buyout/10000).floor.abs 
-    #   silver = ((x.buyout/100) % 100).floor.abs
-    #   copper = (x.buyout % 100).floor.abs
-    #   "#{gold}g#{silver}s#{copper}c"
-    # end
+    @buyout_data.entries.each do |x|
+      avg_buyout_array = []
+      avg_buyout_array.push(x['date_trunc'])
+      avg_buyout_array.push(x['avg'].to_i)
+      buyout_array.push(avg_buyout_array)
+    end
+    @bid_data.entries.each do |x|
+      avg_bid_array = []
+      avg_bid_array.push(x['date_trunc'])
+      avg_bid_array.push(x['avg'].to_i)
+      bid_array.push(avg_bid_array)
+    end
+    
     
      @auction_item = Item.find_by(item_id: params[:item_id])
      @chart = LazyHighCharts::HighChart.new('graph') do |f|
@@ -41,9 +31,9 @@ class AuctionsController < ApplicationController
             type: 'datetime'
            )
 
-          f.series(:name => "Buyout", :yAxis => 0, :data => @buyout)
-          f.series(:name => "Bid", :yAxis => 0, :data => @bid)
-          f.series(:name => "Average", :yAxis => 0, :data => @average)
+          f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
+          f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
+          
           
           f.yAxis [
             {:title => {:text => "Revenue", :margin => 70} },
