@@ -1,7 +1,7 @@
-class ItemData < ActiveRecord::Base
+class Item < ActiveRecord::Base
   # before_action :authenticate_user!
-  belongs_to :auctions
   has_many :auction_and_items
+  belongs_to :auctions
 
   def self.get_item_id_and_name(id)
     url = ("http://us.battle.net/api/wow/item/#{id}")

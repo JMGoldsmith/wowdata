@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214214518) do
+ActiveRecord::Schema.define(version: 20150216000006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150214214518) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "auction_data", force: :cascade do |t|
+  create_table "auctions", force: :cascade do |t|
     t.integer  "auc"
     t.integer  "item_id"
     t.string   "owner"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150214214518) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "item_data", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.integer  "buyPrice"
     t.boolean  "equippable"
     t.integer  "item_id"
