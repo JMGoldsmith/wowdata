@@ -28,7 +28,7 @@ class AuctionsController < ApplicationController
     @auction_item = Item.find_by(item_id: params[:item_id])
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => @auction_item[:name])
-        f.options[:xAxis][:categories] = 7.days*1000
+        f.options[:xAxis][:categories] = ['Feb 11', 'Feb 12', 'Feb 13', 'Feb 14', 'Feb 15', 'Feb 16', 'Feb 17', 'Feb 18', 'Feb 19']
         # f.xAxis(:type => 'datetime', :pointInterval => 5.days*1000)
         # f.xAxis [
         #   {:title => {:text => "Time", :margin => 10} },
