@@ -8,7 +8,7 @@ class AuctionsController < ApplicationController
     connection = ActiveRecord::Base.connection.raw_connection
     # need to include params ID in to queries
     params_array = [] 
-    params_array.push(params[:id])
+    params_array.push(params[:item_id])
     @buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 group by 1 order by 1;],params_array)
     @bid_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 group by 1 order by 1;],params_array)
     buyout_array = []
