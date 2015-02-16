@@ -9,8 +9,8 @@ class AuctionsController < ApplicationController
     # need to include params ID in to queries
     params_array = [] 
     params_array.push(params[:item_id])
-    @buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 group by 1 order by 1;],params_array)
-    @bid_data = connection.exec(%q[select date_trunc('hour', created_at), avg(bid) from auctions where item_id = $1 group by 1 order by 1;],params_array)
+    @buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
+    @bid_data = connection.exec(%q[select date_trunc('hour', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     buyout_array = []
     bid_array = []
     @buyout_data.entries.each do |x|
@@ -28,8 +28,8 @@ class AuctionsController < ApplicationController
     @auction_item = Item.find_by(item_id: params[:item_id])
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => @auction_item[:name])
-        f.options[:xAxis][:categories] = ['Feb 11', 'Feb 12', 'Feb 13', 'Feb 14', 'Feb 15', 'Feb 16', 'Feb 17', 'Feb 18', 'Feb 19']
-        # f.xAxis(:type => 'datetime', :pointInterval => 5.days*1000)
+        # f.options[:xAxis][:categories] = ['Feb 11', 'Feb 12', 'Feb 13', 'Feb 14', 'Feb 15', 'Feb 16', 'Feb 17', 'Feb 18', 'Feb 19']
+        # f.xAxis(:pointInterval => 1.day, :data => buyout_array)
         # f.xAxis [
         #   {:title => {:text => "Time", :margin => 10} },
         # ]
