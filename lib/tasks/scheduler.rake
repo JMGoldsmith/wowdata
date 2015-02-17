@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :update_database => :environment do
   puts "Loading data in to DB"
-  AuctionData.data_dump
+  Auction.data_dump
   puts "done."
 end
 
