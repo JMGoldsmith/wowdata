@@ -9,17 +9,22 @@ class AuctionsController < ApplicationController
     # need to include params ID in to queries
     params_array = [] 
     params_array.push(params[:item_id])
+    #sql queries
     @buyout_data = connection.exec(%q[select date_trunc('day', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @seller_data = connection.exec(%q[select count(id), owner from auctions where item_id = $1 group by owner order by count desc limit 5;],params_array)
+    @total_auctions = connection.exec(%q[select date_trunc('day', created_at), sum(quantity) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
+    #arrays to be flattened
+    total_array = []
     buyout_array = []
     bid_array = []
     seller_name_array = []
     seller_total_array = []
     hourly_bid_array = []
     hourly_buyout_array = []
+    #begin looping to flatten
     @buyout_data.entries.each do |x|
       avg_buyout_array = []
       avg_buyout_array.push(x['date_trunc'])
@@ -48,7 +53,14 @@ class AuctionsController < ApplicationController
       avg_buyout_array.push((x['avg'].to_i/10000).floor.abs)
       hourly_bid_array.push(avg_buyout_array)
     end
+    @total_auctions.entries.each do |x|
+      total_auction_array = []
+      total_auction_array.push(x['date_trunc'])
+      total_auction_array.push(x['sum'].to_i)
+      total_array.push(total_auction_array)
+    end
     @auction_item = Item.find_by(item_id: params[:item_id])
+    #graphs
     @avg_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} average last 10 days" )
         f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
@@ -87,7 +99,16 @@ class AuctionsController < ApplicationController
            f.options[:chart][:defaultSeriesType] = "column"
            f.options[:xAxis] = {:plot_bands => "none", :title=>{:text=>"Name"}, :categories => seller_name_array}
            f.options[:yAxis][:title] = {:text=>"Total auctions"}
-          
+    end
+    @total_chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(:text => "#{@auction_item[:name]} total for sale by day" )
+        f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
+        f.series(:name => "Buyout", :yAxis => 0, :data => total_array)
+        f.yAxis [
+          {:title => {:text => "Total number", :margin => 10} },
+        ]
+        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        f.chart({:defaultSeriesType=>"line"})
     end
   end
 
