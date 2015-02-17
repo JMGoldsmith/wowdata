@@ -16,7 +16,7 @@
 @import "bootstrap";
 
 body {
-    padding-top: 70px; 
+    padding-top: 70px;
 }
 .wowhead {
 	color:white;
@@ -28,4 +28,14 @@ body {
 }
 .btn {
 	margin-bottom: 50px;
+}
+.panel {
+	padding: 0 0 0 0;
+}
+.small-chart {
+	width: 400px; 
+	height: 300px;
+}
+.small-chart-row {
+	padding-top: 70px;
 }

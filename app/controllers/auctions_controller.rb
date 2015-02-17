@@ -62,7 +62,7 @@ class AuctionsController < ApplicationController
     @auction_item = Item.find_by(item_id: params[:item_id])
     #graphs
     @avg_chart = LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(:text => "#{@auction_item[:name]} average last 10 days" )
+        f.title(:text => "#{@auction_item[:name]} average last 10 days by stacks of 20" )
         f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
         f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
         f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
@@ -73,7 +73,7 @@ class AuctionsController < ApplicationController
         f.chart({:defaultSeriesType=>"line"})
     end
     @hourly_chart = LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(:text => "#{@auction_item[:name]} average last 24 hours" )
+        f.title(:text => "#{@auction_item[:name]} average 24 hours by stacks of 20" )
         f.options[:xAxis][:categories] = {pointInterval: 1.hour*1000, pointStart: 1.day.ago.getutc.to_i*1000}
         f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
         f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
@@ -103,7 +103,7 @@ class AuctionsController < ApplicationController
     @total_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} total for sale by day" )
         f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
-        f.series(:name => "Buyout", :yAxis => 0, :data => total_array)
+        f.series(:name => "Total", :yAxis => 0, :data => total_array)
         f.yAxis [
           {:title => {:text => "Total number", :margin => 10} },
         ]

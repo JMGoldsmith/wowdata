@@ -12,19 +12,34 @@
   <tbody>
     
     <% @trades.each do |trade| %>
-    <div class='col-sm-12 well list-unstyled wowhead'>
-        Realm:<%= trade.realm %>
+    <div class='col-sm-12 panel list-unstyled wowhead'>
+     <div class='col-sm-1'>   
+      Realm:<%= trade.realm %>
+    </div>
+    <div class='col-sm-2'> 
         BattleNet ID:<%= trade.bnet_id %>
+      </div>
+      <div class='col-sm-2'> 
         Item:<%= trade.item %>
+      </div>
+      <div class='col-sm-1'> 
         Number of Items:<%= trade.number_of_items %>
+      </div>
+      <div class='col-sm-1'> 
         Price Per Item:<%= trade.price_per_item %>
+      </div>
+      <div class='col-sm-1'> 
         Number of stacks:<%= trade.number_of_stacks %>
+      </div>
+      <div class='col-sm-1'> 
         Price per stack:<%= trade.price_per_stack %>
-        Willing to accept COD: <%= trade.cod %>
-        <%= link_to 'Show', trade %>
-        <%= link_to 'Edit', edit_trade_path(trade) %>
+      </div>
+      <div class='col-sm-1'> 
+        Accepts COD: <%= trade.cod %>
+      </div>
+      <div class='col-sm-2'> 
         <%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %>
-      
+      </div>
     </div>
     <% end %>
 

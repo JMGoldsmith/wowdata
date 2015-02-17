@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require highcharts/highcharts                                                                                                                   
+//= require highcharts/highcharts                                                                                                                  
 //= require handlebars.runtime
 //= require bootstrap-sprockets
 //= require turbolinks

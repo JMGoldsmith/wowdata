@@ -1,12 +1,24 @@
 <div>
-	<ul class='col-sm-6'>
+
+	<ul class='col-sm-8 col-sm-offset-2'>
 	<% @item_data.each do |x|%>
 	<div class='col-sm-12 well list-unstyled wowhead'>
-	<li><a href="http://www.wowhead.com/?item=<%= x.item_id %>"><%= x.name%></a>   || Sell Price to vendor:<%=x.sellPrice%>  || <a href='items/<%= x.item_id %>/auctions'>Auction info for this item.</a></li>	
+	<li>
+		<div class='col-sm-4'>
+			<a href="http://www.wowhead.com/?item=<%= x.item_id  %>"><%= x.name%></a>
+		</div>  
+		<div class='col-sm-4'>
+			Sell Price to vendor: <%=(x.sellPrice/100).floor.abs %>s<%= (x.sellPrice%100).floor.abs%>c 
+		</div>
+		<div class='col-sm-4'> 
+			<a href='items/<%= x.item_id %>/auctions'>Auction info for this item.</a>
+		</div>
+	</li>
+
 	</div>
 	<%end%>
 	</ul>
-	<div class='col-sm-6'>
+	<div class='col-sm-4'>
 		
 	</div>
 </div>

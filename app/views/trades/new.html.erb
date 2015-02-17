@@ -1,20 +1,20 @@
-<h1>New Trade</h1>
+<h1 style='text-align: center;'>Please enter your trade here:</h1>
 
-<div class='col-lg-2 well col-lg-offset-4'>
+<div class='col-lg-3 well col-lg-offset-4'>
 	<%= form_for @trade do |f| %>
-      <%= f.text_field :realm %>
-      <%= f.text_field :bnet_id %>
-      <%= f.text_field :item %>
-      <%= f.number_field :number_of_items %>
-      <%= f.number_field :number_of_stacks %>
-      <%= f.number_field :price_per_item %>
-      <%= f.number_field :price_per_stack %>
-      <%= f.check_box :cod %>
-      <%= f.check_box :order_filled %>
-      <%= f.submit "Create" %>
+     
+      Realm: <%= f.text_field :realm %><br /><br />
+      BattleNet ID: <%= f.text_field :bnet_id %><br /><br />
+      Item: <%= f.text_field :item %><br /><br />
+      Number of Items: <%= f.number_field :number_of_items %><br /><br />
+      Number of Stacks: <%= f.number_field :number_of_stacks %><br /><br />
+      Price per Item: <%= f.number_field :price_per_item %><br /><br />
+      Price per Stack: <%= f.number_field :price_per_stack %><br /><br />
+      Accepting COD?: <%= f.check_box :cod %><br /><br />
+      <%= f.submit "Create" %><br /><br /><br />
     <% end %>
-	
+	<%= link_to 'Back', trades_path %>
 </div>
 
 
-<%= link_to 'Back', trades_path %>
+
