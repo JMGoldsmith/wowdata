@@ -69,6 +69,10 @@ class AuctionsController < ApplicationController
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
+        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
+        day: '%a',
+        week: '%a'}
+        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
@@ -80,6 +84,10 @@ class AuctionsController < ApplicationController
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
+        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
+        day: '%a',
+        week: '%a'}
+        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
@@ -107,6 +115,10 @@ class AuctionsController < ApplicationController
         f.yAxis [
           {:title => {:text => "Total number", :margin => 10} },
         ]
+        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
+        day: '%a',
+        week: '%a'}
+        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
