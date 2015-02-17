@@ -2,18 +2,18 @@
 <div class='row'>
 	<div id="auction_chart" class='col-lg-8 col-lg-offset-2'>
 
-	<%= high_chart("auction_chart", @chart) %>
+	<%= high_chart("auction_chart", @avg_chart) %>
 
 	</div>
 </div>
 <div class='row'>
   <div id="auction_users" class='col-sm-4'>
-  	<%= high_chart("auction_users", @chart) %>
+  	<%= high_chart("auction_users", @seller_chart) %>
   </div>
   <div id="auction_profit" class='col-sm-4'>
-  	<%= high_chart("auction_profit", @chart) %>
+  	<%= high_chart("auction_profit", @hourly_chart) %>
   </div>
   <div id="total_sales_by_server" class='col-sm-4'>
-  	<%= high_chart("total_sales_by_server", @chart) %>
+  	<%= high_chart("total_sales_by_server", @avg_chart) %>
   </div>
 </div>
