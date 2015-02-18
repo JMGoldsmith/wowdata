@@ -8,13 +8,13 @@
     </div> 
   </div>
   <div class='row'>
-    <div id="total_sales_by_server" class='col-sm-6' style="width: 900px; height: 300px;">
+    <div id="one_day" class='col-sm-6' style="width: 900px; height: 300px;">
+      <%= high_chart("one_day", @hourly_chart) %>
+    </div>
+    <div id="total_sales_by_server" class='col-sm-6 small-chart'>
     <%= high_chart("total_sales_by_server", @total_chart) %>
     </div>
     
-    <div id="auction_profit" class='col-sm-6 small-chart'>
-    	<%= high_chart("auction_profit", @hourly_chart) %>
-    </div>
-    <div id= class='col-sm-4 small-chart'>
-    </div>
+    
+    
   </div>
