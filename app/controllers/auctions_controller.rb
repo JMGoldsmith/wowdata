@@ -88,16 +88,16 @@ class AuctionsController < ApplicationController
     @seller_chart = LazyHighCharts::HighChart.new('graph') do |f|       
            f.series(:name=>'Sellers', :data=> seller_total_array)
            f.title({ :text=>"Most active sellers for #{@auction_item[:name]}"})
-           f.legend({:align => 'right', 
-                    :x => -100, 
-                    :verticalAlign=>'top',
-                    :y=>20,
-                    :floating=>"true",
-                    :backgroundColor=>'#FFFFFF',
-                    :borderColor=>'#CCC',
-                    :borderWidth=>1,
-                    :shadow=>"false"
-                    })
+           # f.legend({:align => 'right', 
+           #          :x => -100, 
+           #          :verticalAlign=>'top',
+           #          :y=>20,
+           #          :floating=>"true",
+           #          :backgroundColor=>'#FFFFFF',
+           #          :borderColor=>'#CCC',
+           #          :borderWidth=>1,
+           #          :shadow=>"false"
+           #          })
            f.options[:chart][:defaultSeriesType] = "column"
            f.options[:xAxis] = {:plot_bands => "none", :title=>{:text=>"Name"}, :categories => seller_name_array}
            f.options[:yAxis][:title] = {:text=>"Total auctions"}
@@ -109,7 +109,7 @@ class AuctionsController < ApplicationController
         f.yAxis [
           {:title => {:text => "Total number", :margin => 0} },
         ]
-        # f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
   end
