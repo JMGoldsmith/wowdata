@@ -1,28 +1,38 @@
   
   <div class='row'>
-  	<div id="auction_chart" class='col-sm-8 col-sm-offset-2 small-chart'>
+  	<div id="auction_chart" class='col-sm-9 col-sm-offset-1 small-chart'>
   	<%= high_chart("auction_chart", @avg_chart) %>
   	</div>
     <div class='col-sm-2 text-stuff'>
-      <p>lots of stuff for text</p>
+      <br />
+      <p>This chart shows the average prices by day for the item listed. Please keep in mind that prices can vary widely during the day and this is only to be referenced as historical data.</p>
     </div>
   </div>
   <div class='row'>
-    <div id="one_day" class='col-sm-8 col-sm-offset-2 small-chart'>
+    <div id="one_day" class='col-sm-9 col-sm-offset-1 small-chart'>
       <%= high_chart("one_day", @hourly_chart) %>
     </div>
-  </div>
-  <div class='row'>
-    <div id="total_sales_by_server" class='col-sm-8 col-sm-offset-2 small-chart'>
-      <%= high_chart("total_sales_by_server", @total_chart) %>
+    <div class='col-sm-2 text-stuff'>
+      <br />
+      <p>This is a graph showing the prices since 12:00am server time. Each WoW server has it's own time zone based upon where the server itself is located. This graph will help you to understand when the best times of the day to buy and when to relist the item for sale to maximize profits.</p>
     </div>
   </div>
   <div class='row'>
-    <div id="auction_users" class='col-sm-8 col-sm-offset-2 small-chart'>
+    <div id="total_sales_by_server" class='col-sm-9 col-sm-offset-1 small-chart'>
+      <%= high_chart("total_sales_by_server", @total_chart) %>
+    </div>
+    <div class='col-sm-2 text-stuff'>
+      <br />
+      <p>This graph shows the total amount for the item being sold by day on the server. It can give you an idea of how active the market is for a certain item. If the prices in the previous two graphs drop suddenly, the market may be flooded and it would be best to hold on to the item for relisting at a later date.</p>
+    </div>
+  </div>
+  <div class='row'>
+    <div id="auction_users" class='col-sm-9 col-sm-offset-1 small-chart'>
       <%= high_chart("auction_users", @seller_chart) %>
     </div> 
     <div class='col-sm-2 text-stuff'>
-      <p>lots of stuff for text</p>
+      <br />
+      <p>This graph shows the most active sellers on a given server for a certain item. Most of the time, these high volume sellers are gold farmers who sell their profits for real money. You can usually attempt to fill orders for them in order to avoid the 5% cut the auction house takes.</p>
     </div>
   
   </div>
