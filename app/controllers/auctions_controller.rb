@@ -13,7 +13,7 @@ class AuctionsController < ApplicationController
     @buyout_data = connection.exec(%q[select date_trunc('day', created_at)::date, avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and created_at >= current_date and quantity = 20 group by 1 order by 1;],params_array)
     @bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
-    @hourly_bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and created_at >= current_date and quantity = 20 group by 1 order by 1;],params_array)
+    @hourly_bid_data = connection.exec(%q[select date_trunc('hour', created_at), avg(bid) from auctions where item_id = $1 and created_at >= current_date and quantity = 20 group by 1 order by 1;],params_array)
     @seller_data = connection.exec(%q[select count(id), owner from auctions where item_id = $1 group by owner order by count desc limit 5;],params_array)
     @total_auctions = connection.exec(%q[select date_trunc('day', created_at), sum(quantity) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     #arrays to be flattened
