@@ -1,20 +1,28 @@
-
+  
   <div class='row'>
-  	<div id="auction_chart" class='col-sm-6' style="width: 900px; height: 300px;">
+  	<div id="auction_chart" class='col-sm-8 col-sm-offset-2 small-chart'>
   	<%= high_chart("auction_chart", @avg_chart) %>
   	</div>
-    <div id="auction_users" class='col-sm-6 small-chart'>
-      <%= high_chart("auction_users", @seller_chart) %>
-    </div> 
+    <div class='col-sm-2 text-stuff'>
+      <p>lots of stuff for text</p>
+    </div>
   </div>
   <div class='row'>
-    <div id="one_day" class='col-sm-6' style="width: 900px; height: 300px;">
+    <div id="one_day" class='col-sm-8 col-sm-offset-2 small-chart'>
       <%= high_chart("one_day", @hourly_chart) %>
     </div>
-    <div id="total_sales_by_server" class='col-sm-6 small-chart'>
-    <%= high_chart("total_sales_by_server", @total_chart) %>
+  </div>
+  <div class='row'>
+    <div id="total_sales_by_server" class='col-sm-8 col-sm-offset-2 small-chart'>
+      <%= high_chart("total_sales_by_server", @total_chart) %>
     </div>
-    
-    
-    
+  </div>
+  <div class='row'>
+    <div id="auction_users" class='col-sm-8 col-sm-offset-2 small-chart'>
+      <%= high_chart("auction_users", @seller_chart) %>
+    </div> 
+    <div class='col-sm-2 text-stuff'>
+      <p>lots of stuff for text</p>
+    </div>
+  
   </div>
