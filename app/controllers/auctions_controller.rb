@@ -10,13 +10,14 @@ class AuctionsController < ApplicationController
     params_array = [] 
     params_array.push(params[:item_id])
     #sql queries
-    @buyout_data = connection.exec(%q[select date_trunc('day', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
+    @buyout_data = connection.exec(%q[select date_trunc('day', created_at)::date, avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @seller_data = connection.exec(%q[select count(id), owner from auctions where item_id = $1 group by owner order by count desc limit 5;],params_array)
     @total_auctions = connection.exec(%q[select date_trunc('day', created_at), sum(quantity) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     #arrays to be flattened
+    range_array = []
     total_array = []
     buyout_array = []
     bid_array = []
@@ -30,6 +31,7 @@ class AuctionsController < ApplicationController
       avg_buyout_array.push(x['date_trunc'])
       avg_buyout_array.push((x['avg'].to_i/10000).floor.abs)
       buyout_array.push(avg_buyout_array)
+      range_array.push(x['date_trunc'])
     end
     @bid_data.entries.each do |x|
       avg_bid_array = []
@@ -63,31 +65,23 @@ class AuctionsController < ApplicationController
     #graphs
     @avg_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} average last 10 days by stacks of 20" )
-        f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
+        f.options[:xAxis][:categories] = range_array
         f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
         f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
-        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
-        day: '%a',
-        week: '%a'}
-        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
     @hourly_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} average 24 hours by stacks of 20" )
-        f.options[:xAxis][:categories] = {pointInterval: 1.hour*1000, pointStart: 1.day.ago.getutc.to_i*1000}
+        f.options[:xAxis][:categories] = range_array
         f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
         f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
-        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
-        day: '%a',
-        week: '%a'}
-        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
@@ -110,15 +104,11 @@ class AuctionsController < ApplicationController
     end
     @total_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} total for sale by day" )
-        f.options[:xAxis][:categories] = {pointInterval: 1.day*1000, pointStart: 10.days.ago.getutc.to_i*1000}
+        f.options[:xAxis][:categories] = range_array
         f.series(:name => "Total", :yAxis => 0, :data => total_array)
         f.yAxis [
           {:title => {:text => "Total number", :margin => 10} },
         ]
-        f.xAxis({type: 'datetime', tickInterval: 24*3600*1000, dateTimeLabelFormats: {
-        day: '%a',
-        week: '%a'}
-        })
         f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
