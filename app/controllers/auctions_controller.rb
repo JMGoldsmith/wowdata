@@ -77,8 +77,8 @@ class AuctionsController < ApplicationController
     @hourly_chart = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "#{@auction_item[:name]} average 24 hours by stacks of 20" )
         f.options[:xAxis][:categories] = range_array
-        f.series(:name => "Buyout", :yAxis => 0, :data => buyout_array)
-        f.series(:name => "Bid", :yAxis => 0, :data => bid_array)
+        f.series(:name => "Buyout", :yAxis => 0, :data => hourly_buyout_array)
+        f.series(:name => "Bid", :yAxis => 0, :data => hourly_bid_array)
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
