@@ -82,7 +82,7 @@ class AuctionsController < ApplicationController
         f.yAxis [
           {:title => {:text => "Cost in gold", :margin => 10} },
         ]
-        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        # f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
     @seller_chart = LazyHighCharts::HighChart.new('graph') do |f|       
@@ -107,9 +107,9 @@ class AuctionsController < ApplicationController
         f.options[:xAxis][:categories] = range_array
         f.series(:name => "Total", :yAxis => 0, :data => total_array)
         f.yAxis [
-          {:title => {:text => "Total number", :margin => 10} },
+          {:title => {:text => "Total number", :margin => 0} },
         ]
-        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        # f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
   end
