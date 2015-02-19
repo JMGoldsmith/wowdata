@@ -38,7 +38,9 @@
         Accepts COD: <%= trade.cod %>
       </div>
       <div class='col-sm-2'> 
+        <% if current_user %>
         <%= link_to 'Destroy', trade, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
       </div>
     </div>
     <% end %>

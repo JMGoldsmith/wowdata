@@ -8556,30 +8556,37 @@ button.close {
 /* line 19, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
 body {
   padding-top: 70px;
-  background-image: url(/assets/warlords-9b2e7e5173883759bbe6f199e39b84f3.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
-/* line 25, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+/* line 23, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
 .wowhead {
   color: white;
   height: 50px;
   background-color: black;
 }
 
-/* line 33, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+/* line 31, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
 .btn {
   margin-bottom: 50px;
 }
 
-/* line 36, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+/* line 34, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
 .panel {
   padding: 0 0 0 0;
 }
 
-/* line 39, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+/* line 37, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
 .small-chart {
-  width: 400px;
+  height: 300px;
+  margin-right: 20px;
+}
+
+/* line 41, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+.small-chart-row {
+  padding-top: 70px;
+}
+
+/* line 44, /home/vagrant/code/mks/projects/WowData/app/assets/stylesheets/application.scss */
+.text-stuff {
   height: 300px;
 }
