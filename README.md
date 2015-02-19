@@ -2,13 +2,17 @@
 
 ## Built with:
 
+#### Framework
+- Rails
+- Bootstrap
+
 #### Gems
-- lazy_high_charts
-- pg
-- httparty
-- devise
-- bootstrap-sass
-- rspec
+- lazy_high_charts - charting gem
+- pg - database connection gem
+- httparty - rest client gem
+- devise - user sessions
+- bootstrap-sass - front end
+- rspec - testing
 
 #### APIs
 - WoWhead
@@ -31,3 +35,7 @@
 - This allows hover over actions.
 - From the items page, you can click on items auction page to get the current data for that auction.
 - There are 4 graphs, showing average over time, past 24 hours, total items sold, and the top sellers.
+- Trades allow you to post requests for large amounts of a certain item that may not be available on the auction house or for a price that is lower than the auction house.
+
+##### ERD
+![My Image](https://github.com/JMGoldsmith/wowdata/tree/master/planning/ERD.jpg)
