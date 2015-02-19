@@ -38,4 +38,4 @@
 - Trades allow you to post requests for large amounts of a certain item that may not be available on the auction house or for a price that is lower than the auction house.
 
 ##### ERD
-![My Image](https://github.com/JMGoldsmith/wowdata/tree/master/planning/ERD.jpg)
+![My Image](https://raw.githubusercontent.com/JMGoldsmith/wowdata/master/planning/ERD.jpg)
