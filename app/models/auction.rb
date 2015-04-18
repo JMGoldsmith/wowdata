@@ -7,15 +7,15 @@ class Auction < ActiveRecord::Base
     where("date(created_at) = ?",date).average('buyout')
   end
 
-  def self.money_convert
-    gold = (buyout/10000).floor.abs 
-    silver = ((buyout/100) % 100).floor.abs
-    copper = (buyout % 100).floor.abs
-    puts "#{gold}g#{silver}s#{copper}c"
-  end
+  # def self.money_convert
+  #   gold = (buyout/10000).floor.abs 
+  #   silver = ((buyout/100) % 100).floor.abs
+  #   copper = (buyout % 100).floor.abs
+  #   puts "#{gold}g#{silver}s#{copper}c"
+  # end
 
   def self.get_file_from_blizzard
-    key = '97e4ukrcwjwzfseyb2u2tc5thz4kwxrz'
+    key = '97e4ukrcwjwzfseyb2u2tc5thz4kwxrz' # need to figure out how to hide this, or push to private.
     HTTParty.get('http://us.battle.net/api/wow/auction/data/medivh')
   end
 
@@ -38,7 +38,7 @@ class Auction < ActiveRecord::Base
         rand = auction["rand"]
         seed = auction["seed"]
         situation = auction["context"]
-      #COpy from events.rb style, then do if statement and AuctionData.create(hash)
+      #change this to push to array, or loop and get a count, then push avg to DB.
       if auction["item"] == 109118 || auction["item"] == 72092 || auction["item"] == 109119 || auction["item"] == 2772 || auction["item"] == 23424 || auction["item"] == 109693 || auction["item"] == 113588
         auction = Auction.create(
           {
