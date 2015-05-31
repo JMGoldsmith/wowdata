@@ -2,14 +2,15 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!
   LazyHighCharts::HighChart
 
-  
-  
+
+
   def index
     connection = ActiveRecord::Base.connection.raw_connection
     # need to include params ID in to queries
-    params_array = [] 
+    params_array = []
     params_array.push(params[:item_id])
     #sql queries
+    #adjust so that quantity isn't needed
     @buyout_data = connection.exec(%q[select date_trunc('day', created_at)::date, avg(buyout) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
     @hourly_buyout_data = connection.exec(%q[select date_trunc('hour', created_at), avg(buyout) from auctions where item_id = $1 and created_at >= current_date and quantity = 20 group by 1 order by 1;],params_array)
     @bid_data = connection.exec(%q[select date_trunc('day', created_at), avg(bid) from auctions where item_id = $1 and quantity = 20 group by 1 order by 1;],params_array)
@@ -85,11 +86,11 @@ class AuctionsController < ApplicationController
         # f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
         f.chart({:defaultSeriesType=>"line"})
     end
-    @seller_chart = LazyHighCharts::HighChart.new('graph') do |f|       
+    @seller_chart = LazyHighCharts::HighChart.new('graph') do |f|
            f.series(:name=>'Sellers', :data=> seller_total_array)
            f.title({ :text=>"Most active sellers for #{@auction_item[:name]}"})
-           # f.legend({:align => 'right', 
-           #          :x => -100, 
+           # f.legend({:align => 'right',
+           #          :x => -100,
            #          :verticalAlign=>'top',
            #          :y=>20,
            #          :floating=>"true",
@@ -117,5 +118,5 @@ class AuctionsController < ApplicationController
   private
   def params_id
     params.permit(:id,:auc,:item_id,:owner,:ownerRealm,:bid,:buyout,:quantity,:timeLeft,:rand,:seed,:situation,:name)
-  end 
+  end
 end
