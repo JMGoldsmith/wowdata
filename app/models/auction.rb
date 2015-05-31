@@ -104,6 +104,6 @@ class Auction < ActiveRecord::Base
   end
   def self.data_dump
       Auction.get_file_from_blizzard
-      Auction.data_pull_from_file()
+      Auction.data_pull_from_file
   end
 end

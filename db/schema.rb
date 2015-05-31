@@ -24,19 +24,19 @@ ActiveRecord::Schema.define(version: 20150216000006) do
   end
 
   create_table "auctions", force: :cascade do |t|
-    t.integer  "auc"
-    t.integer  "item_id"
+    t.integer  "auc",        limit: 8
+    t.integer  "item_id",    limit: 8
     t.string   "owner"
     t.string   "ownerRealm"
-    t.integer  "bid"
-    t.integer  "buyout"
+    t.integer  "bid",        limit: 8
+    t.integer  "buyout",     limit: 8
     t.integer  "quantity"
     t.string   "timeLeft"
-    t.integer  "rand"
-    t.integer  "seed"
-    t.integer  "situation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "rand",       limit: 8
+    t.integer  "seed",       limit: 8
+    t.integer  "situation",  limit: 8
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "items", force: :cascade do |t|
