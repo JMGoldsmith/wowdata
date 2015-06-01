@@ -3,11 +3,22 @@ Rails.application.routes.draw do
 
   root 'items#index'
   devise_for :users
-  resources :auction_and_items, except: :destroy 
-  resources :items, only: [:index,:show,:create,:new] do 
+  resources :auction_and_items, except: :destroy
+  resources :items, only: [:index,:show,:create,:new] do
     resources :auctions, only: [:index,:show,:create,:new]
   end
   resources :user_auction
+  resources :api do
+    member do
+      get 'buyout_data'
+      get 'hourly_buyout_data'
+      get 'bid_data'
+      get 'hourly_bid_data'
+      get 'seller_data'
+      get 'total_auctions'
+    end
+  end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

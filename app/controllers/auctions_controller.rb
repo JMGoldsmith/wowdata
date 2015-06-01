@@ -2,8 +2,6 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!
   LazyHighCharts::HighChart
 
-
-
   def index
     connection = ActiveRecord::Base.connection.raw_connection
     # need to include params ID in to queries
