@@ -25,9 +25,17 @@
 - Rake task calls method in the Auctions model.
 - This method then pulls an original request from the Blizzard API.
 - This request returns a second link holding the requested data in JSON.
-- The method then grabs that JSON and pushes it in to the Postgres database. 
+- The method then grabs that JSON and pushes it in to the Postgres database.
 - Before pushing, it filters the data based on 7 items.
 - This process occurs once every hour based upon a rake task in schedule.rb.
+
+##### API endpoints
+/api/:id/buyout_data(.:format)         api#buyout_data
+/api/:id/hourly_buyout_data(.:format)  api#hourly_buyout_data
+/api/:id/bid_data(.:format)            api#bid_data
+/api/:id/hourly_bid_data(.:format)     api#hourly_bid_data
+/api/:id/seller_data(.:format)         api#seller_data
+/api/:id/total_auctions(.:format)      api#total_auctions
 
 ##### Front End
 
