@@ -8,6 +8,8 @@ production:
   adapter: postgresql
   encoding: unicode
   database: myapp_development
+  username: root
+  password: root
   pool: 5
 
 development:
