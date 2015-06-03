@@ -9,9 +9,9 @@ production:
   encoding: unicode
   database: myapp_development
   username: root
-  password: root
   pool: 5
-
+  timeout: 5000
+  
 development:
   adapter: postgresql
   encoding: unicode
