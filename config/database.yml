@@ -8,10 +8,13 @@ production:
   adapter: postgresql
   encoding: unicode
   database: myapp_development
-  username: root
+  username: jmgoldsmith
+  password: 123dfg123#
+  host: myapp.cj3v7smthm1s.us-west-2.rds.amazonaws.com
+  port: 5432 
   pool: 5
   timeout: 5000
-  
+
 development:
   adapter: postgresql
   encoding: unicode
