@@ -8,5 +8,6 @@ module AuctionsHelper
   def delete_old_data
   	Auctions.where('created_at < ?', 7.days.ago).each do |auction|
   		auction.destroy
+    end
   end
 end
